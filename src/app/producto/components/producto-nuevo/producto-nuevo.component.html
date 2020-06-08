@@ -1,0 +1,102 @@
+<dx-accordion #accordion [collapsible]="true" [multiple]="false" [animationDuration]="300" [selectedIndex]="-1">
+  <dxi-item title="Nuevo">
+    <div>
+      <form [formGroup]="FormProducto">
+
+        <div class="dx-fieldset">
+          <div class="dx-field">
+            <div class="dx-field-label">Nombre:
+              <span class="dx-field-item-required-mark"> *</span>
+            </div>
+            <div class="dx-field-value">
+              <dx-text-box placeholder="Nombre del producto" [showClearButton]="true" formControlName="nombre">
+                <dx-validator>
+                  <dxi-validation-rule type="required" message="El campo es obligatorio">
+                  </dxi-validation-rule>
+                  <dxi-validation-rule type="stringLength" max="100" min="2"
+                    message="El nombre debe tener entre 3 y 100 caracteres">
+                  </dxi-validation-rule>
+                </dx-validator>
+              </dx-text-box>
+            </div>
+          </div>
+        </div>
+
+        <div class="dx-fieldset">
+          <div class="dx-field">
+            <div class="dx-field-label">Referencia:
+              <span class="dx-field-item-required-mark"> *</span>
+            </div>
+            <div class="dx-field-value">
+              <dx-text-box placeholder="Refrencia del producto" [showClearButton]="true" formControlName="referencia">
+                <dx-validator>
+                  <dxi-validation-rule type="required" message="El campo es obligatorio">
+                  </dxi-validation-rule>
+                  <dxi-validation-rule type="stringLength" max="20" min="2"
+                    message="La referencia debe tener entre 2 y 20 caracteres">
+                  </dxi-validation-rule>
+                </dx-validator>
+              </dx-text-box>
+            </div>
+          </div>
+        </div>
+
+        <div class="dx-fieldset">
+          <div class="dx-field">
+            <div class="dx-field-label">Precio:
+              <span class="dx-field-item-required-mark"> *</span>
+            </div>
+            <div class="dx-field-value">
+              <dx-number-box [showSpinButtons]="true" [showClearButton]="true" formControlName="precio">
+                <dx-validator>
+                  <dxi-validation-rule type="required" message="El campo es obligatorio">
+                  </dxi-validation-rule>
+                  <dxi-validation-rule type="range" max="99999999"
+                    message="El precio no se encuentra dentro del rango aceptado $0 - $99'999.999">
+                  </dxi-validation-rule>
+                  <dxi-validation-rule type="range" min="0" message="El precio debe ser mayor a $0">
+                  </dxi-validation-rule>
+                </dx-validator>
+              </dx-number-box>
+            </div>
+          </div>
+        </div>
+
+        <dx-button text="Guardar" (onClick)="MapearProducto()" type="success" icon="check" [disabled]="FormProducto.invalid">
+        </dx-button>
+        <!-- [disabled]="true" -->
+
+        <!--  <dx-form id="form" [showValidationSummary]="true">
+          <dxi-item itemType="group" cssClass="first-group">
+            <dxi-item dataField="nombre" [label]="{text:'Nombre'}">
+              <dxi-validation-rule type="required" message="El campo es obligatorio">
+              </dxi-validation-rule>
+              <dxi-validation-rule type="stringLength" max="100" min="2"
+                message="El nombre debe tener entre 3 y 100 caracteres">
+              </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="referencia" [label]="{text:'Referencia'}">
+              <dxi-validation-rule type="required" message="El campo es obligatorio">
+              </dxi-validation-rule>
+              <dxi-validation-rule type="stringLength" max="20" min="2"
+                message="La referencia debe tener entre 2 y 20 caracteres">
+              </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="precio" [label]="{text:'Precio'}">
+              <dxi-validation-rule type="required" message="El campo es obligatorio">
+              </dxi-validation-rule>
+              <dxi-validation-rule type="range" max="99999999"
+                message="El precio no se encuentra dentro del rango aceptado $0 - $99'999.999">
+              </dxi-validation-rule>
+              <dxi-validation-rule type="range" min="0" message="El precio debe ser mayor a $0">
+              </dxi-validation-rule>
+            </dxi-item>
+          </dxi-item>
+          <dxi-item itemType="button" alignment="left"
+            [buttonOptions]="{icon: 'check', type: 'success', text:'Guardar',onClick: Guardar(), position:'right', disabled: isValid() }">
+          </dxi-item>
+        </dx-form> -->
+      </form>
+    </div>
+  </dxi-item>
+</dx-accordion>

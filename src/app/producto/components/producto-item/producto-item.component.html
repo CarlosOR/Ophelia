@@ -1,0 +1,37 @@
+<div class="item">
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">
+      {{Producto.nombre}} <span>({{Producto.referencia}})</span>
+      <dx-button class="aux" icon="trash" type="danger" (onClick)="Eliminar()">
+      </dx-button>
+    </div>
+    <div class="card-img-top no-img">
+      <div class="icon-adjust">
+        <span class="dx-icon-card icon large"></span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        {{Producto.nombre}} - ${{Producto.precio | number: '2.2-2'}}
+      </p>
+      <div class="dx-field">
+        <div class="dx-field-value">
+          <dx-check-box (onValueChanged)="Agregar($event.value)" id="chbxCompra_{{Producto.Id}}"
+            (mouseenter)="AgregarTooltip = true;" (mouseleave)="AgregarTooltip = false;"
+            [value]="Producto.seleccionado">
+            {{MarcarAgregar}}
+          </dx-check-box>
+        </div>
+        <dx-tooltip target="#chbxCompra_{{Producto.Id}}" position="top" [visible]="AgregarTooltip">
+          <dxo-animation>
+            <dxo-show type="slide" [from]="{ top: -100, opacity: 0 }" [to]="{ opacity: 1, top: 0 }"></dxo-show>
+            <dxo-hide type="pop" [from]="{ scale: 1, opacity: 1 }" [to]="{ opacity: 0, scale: 0.1 }"></dxo-hide>
+          </dxo-animation>
+          <div *dxTemplate="let data = data of 'content'">
+            Agregar
+          </div>
+        </dx-tooltip>
+      </div>
+    </div>
+  </div>
+</div>

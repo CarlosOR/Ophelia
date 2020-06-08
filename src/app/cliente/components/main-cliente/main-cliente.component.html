@@ -1,0 +1,30 @@
+<dx-data-grid id="gridContainer" [dataSource]="Clientes" keyExpr="id" [allowColumnReordering]="true"
+  [showBorders]="true" (onRowInserting)="logEvent($event, 'RowInserting')"
+  (onRowUpdating)="logEvent($event,'RowUpdating')" (onRowRemoving)="logEvent($event,'RowRemoving')" (onSelectionChanged)="SelectionChanged($event)">
+  <dxo-selection mode="single"></dxo-selection>
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+    <dxo-texts confirmDeleteMessage="¿Está seguro de eliminar el registro?"></dxo-texts>
+  </dxo-editing>
+
+  <dxi-column dataField="identificacion" caption="Identificación">
+    <dxi-validation-rule type="stringLength" [min]="2" message="Debe tener minimo 4 caracteres y maximo 15">
+    </dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="nombre">
+    <dxi-validation-rule type="stringLength" [min]="2" message="Debe tener minimo 4 caracteres y maximo 50">
+    </dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="fechaNacimiento" dataType="date">
+    <dxi-validation-rule type="required" message="Debe registrar la fecha de nacimiento">
+    </dxi-validation-rule>
+    <dxi-validation-rule type="range" [max]="MaxDate" message="Fecha máxima {{ MaxDate | date:'yyyy/MM/dd' }}">
+    </dxi-validation-rule>
+    <dxi-validation-rule type="range" [min]="MinDate" message="Fecha mínima {{ MinDate | date:'yyyy/MM/dd' }}">
+    </dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="telefono">
+    <dxi-validation-rule type="stringLength" [min]="2" message="Debe tener minimo 7 caracteres y maximo 20">
+    </dxi-validation-rule>
+  </dxi-column>
+</dx-data-grid>

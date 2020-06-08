@@ -1,0 +1,19 @@
+<dx-data-grid id="gridContainer" [dataSource]="Productos" [showBorders]="true">
+  <dxi-column dataField="nombre" caption="Producto"></dxi-column>
+  <dxi-column dataField="referencia" caption="Referencia"></dxi-column>
+  <dxi-column dataField="precio" caption="Precio" dataType="number"
+    [format]="{ style: 'currency', currency: 'COP', useGrouping: true, minimumSignificantDigits: 2 }">
+  </dxi-column>
+  <dxo-summary>
+    <dxi-total-item column="Precio" summaryType="sum" valueFormat="currency" displayFormat="Total: {0}">
+    </dxi-total-item>
+  </dxo-summary>
+</dx-data-grid>
+
+<dx-button text="Comprar" type="success" (onClick)="RealizarCompra()" [disabled]="Cliente == undefined"></dx-button>
+<div class="" *ngIf="Cliente == undefined">
+  Seleccione un cliente.
+</div>
+<div class="" *ngIf="CompraRealizada == true">
+  Compra realizada con exito
+</div>
